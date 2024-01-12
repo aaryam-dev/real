@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Calendar with Notes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #uploadButton {
+            margin-top: 10px;
+        }
+
+        #adminControls {
+            display: none; /* Hidden by default, only visible to the admin */
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="script.js" defer></script>
+
+    <h1>My Calendar</h1>
+
+    <div>
+        <label for="isAdmin">Login as Admin:</label>
+        <input type="checkbox" id="isAdmin" onchange="toggleAdminControls()">
+    </div>
+
+    <div>
+        <button onclick="previousMonth()">Previous Month</button>
+        <span id="currentMonthYear"></span>
+        <button onclick="nextMonth()">Next Month</button>
+    </div>
+
+    <div id="calendar-container"></div>
+
+    <div>
+        <h2>Upload Notes</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" accept=".pdf" multiple required>
+            <input type="date" id="dateInput" required>
+            <button type="button" onclick="uploadFiles()">Upload</button>
+        </form>
+    </div>
+
+    <div id="adminControls"></div>
+</body>
+</html>
